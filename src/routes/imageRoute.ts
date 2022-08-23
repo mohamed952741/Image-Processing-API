@@ -16,6 +16,7 @@ imageRoute.get('/', async (req: Request, res: Response): Promise<void> => {
     : null;
 
   //check if the request is available
+
   if (!filename || !height || !width) {
     res
       .status(400)

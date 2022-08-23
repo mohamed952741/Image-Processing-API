@@ -1,8 +1,10 @@
-import request from 'supertest';
+import supertest from 'supertest';
 import app from '../index';
 
-describe('GET /', (): void => {
-  it('responds with 200', (done): void => {
-    request(app).get('/').expect(200, done);
+const request = supertest(app);
+describe('Test endpoint main route response', () => {
+  it('gets the api endpoint main route', async () => {
+    const response = await request.get('/api');
+    expect(response.status).toBe(200);
   });
 });

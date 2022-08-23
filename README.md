@@ -58,3 +58,24 @@ Run the application
   npm run start
 ```
 
+
+## ## Endpoints
+
+### An endpoint that always returns status 200
+
+```http
+  GET /api
+```
+
+### List all images that can be accessed through the endpoint
+
+```http
+  GET /api/listImages
+```
+
+#### Create thumbnail version of image
+
+```http
+  GET /api/images/?filename={filename}&height={height}&width={width}
+```
+

@@ -1,46 +1,23 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
-const promises_1 = __importDefault(require("fs/promises"));
-const path_1 = __importDefault(require("path"));
-const image_size_1 = __importDefault(require("image-size"));
 const index_1 = __importDefault(require("../../index"));
-describe('GET /api/images', () => {
-    it('responds with 400 if called without parameters', (done) => {
-        (0, supertest_1.default)(index_1.default).get('/api/images').expect(400, done);
-    });
-    it('responds with 400 if called with a missing parameter', (done) => {
-        (0, supertest_1.default)(index_1.default).get('/api/images?filename=test&height=100').expect(400, done);
-    });
-    it('responds with 404 if called correctly but image does not exist', (done) => {
-        (0, supertest_1.default)(index_1.default)
-            .get('/api/images?filename=test&height=100&width=100')
-            .expect(404, done);
-    });
-    it('responds with 200 if called correctly and image exist', (done) => {
-        (0, supertest_1.default)(index_1.default)
-            .get('/api/images?filename=santamonica&height=100&width=100')
-            .expect(200, done);
-    });
-    it('created a thumbnail version of the image', (done) => {
-        (0, supertest_1.default)(index_1.default)
-            .get('/api/images?filename=santamonica&height=100&width=100')
-            .then(() => {
-            promises_1.default.stat(path_1.default.resolve(__dirname, '../../../images/thumbnail/santamonica-100x100.jpg')).then((fileStat) => expect(fileStat).not.toBeNull());
-            done();
-        });
-    });
-    it('created a thumb version of the image with the correct height and width', (done) => {
-        (0, supertest_1.default)(index_1.default)
-            .get('/api/images?filename=santamonica&height=100&width=150')
-            .then(() => {
-            const dimensions = (0, image_size_1.default)(path_1.default.resolve(__dirname, '../../../images/thumbnail/santamonica-100x150.jpg'));
-            expect(dimensions.height).toEqual(100);
-            expect(dimensions.width).toEqual(150);
-            done();
-        });
-    });
+const request = (0, supertest_1.default)(index_1.default);
+describe('Test endpoint image route response', () => {
+    it('tests resizing of an image', () => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield request.get('/api/images?filename=santamonica&width=250&height=220');
+        expect(response.status).toEqual(200);
+    }));
 });

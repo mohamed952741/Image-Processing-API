@@ -12,6 +12,10 @@ app.get('/', (_, res: Response): void => {
   res.status(200).send('server working');
 });
 
+app.get('/api', (_, res: Response): void => {
+  res.status(200).send('server working');
+});
+
 app.listen(port, (): void => {
   // make sure thumbnail folder exists
   const thumbPath = path.resolve(__dirname, '../images/thumbnail');

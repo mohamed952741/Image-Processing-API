@@ -1,8 +1,8 @@
-import request from 'supertest';
+import supertest from 'supertest';
 import app from '../../index';
-
-describe('GET /api/listImages', (): void => {
-  it('responds with 200', (done): void => {
-    request(app).get('/api/listImages').expect(200, done);
-  });
-});
+const request = supertest(app);
+describe('Test endpoint main route response', () => {
+it('tests presence of all images', async () => {
+    const response = await request.get('/api/listImages');
+    expect(response.status).toBe(200);
+  });});

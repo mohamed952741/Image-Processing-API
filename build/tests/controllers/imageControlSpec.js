@@ -19,17 +19,17 @@ const filePathThumbnailImage = path_1.default.resolve(__dirname, '../../../image
 describe('The imageResizer function', () => {
     it('returns a buffer after sucessfully resizing an image', () => __awaiter(void 0, void 0, void 0, function* () {
         const imageBuffer = yield imageControl_1.default.resizeImage({
-            height: 100,
-            width: 150,
+            height: 200,
+            width: 250,
             filePathOriginalImage,
             filePathThumbnailImage,
         });
         expect(imageBuffer).toBeInstanceOf(Buffer);
     }));
-    it('rejects promise if Original image is not found', () => __awaiter(void 0, void 0, void 0, function* () {
+    it('rejects promise if something went wrong', () => __awaiter(void 0, void 0, void 0, function* () {
         yield expectAsync(imageControl_1.default.resizeImage({
-            height: 100,
-            width: 150,
+            height: 200,
+            width: 250,
             filePathOriginalImage: '',
             filePathThumbnailImage,
         })).toBeRejected();

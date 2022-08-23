@@ -13,6 +13,9 @@ app.use('/api', main_1.default);
 app.get('/', (_, res) => {
     res.status(200).send('server working');
 });
+app.get('/api', (_, res) => {
+    res.status(200).send('server working');
+});
 app.listen(port, () => {
     // make sure thumbnail folder exists
     const thumbPath = path_1.default.resolve(__dirname, '../images/thumbnail');

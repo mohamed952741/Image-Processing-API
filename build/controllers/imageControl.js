@@ -20,7 +20,6 @@ const resizeImage = ({ width, height, filePathOriginalImage, filePathThumbnailIm
         .readFile(filePathOriginalImage)
         .catch(() => null);
     if (!data) {
-        console.log('Here');
         return Promise.reject();
     }
     const imageBuffer = yield (0, sharp_1.default)(data)
@@ -29,7 +28,6 @@ const resizeImage = ({ width, height, filePathOriginalImage, filePathThumbnailIm
         .catch(() => null);
     if (!imageBuffer) {
         return Promise.reject();
-        console.log('Here2');
     }
     return promises_1.default
         .writeFile(filePathThumbnailImage, imageBuffer)
@@ -38,7 +36,6 @@ const resizeImage = ({ width, height, filePathOriginalImage, filePathThumbnailIm
     })
         .catch(() => {
         return Promise.reject();
-        console.log('Here3');
     });
 });
 exports.default = { resizeImage };

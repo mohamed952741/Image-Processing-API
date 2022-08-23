@@ -21,7 +21,6 @@ const resizeImage = async ({
     .catch(() => null);
 
   if (!data) {
-    console.log('Here');
     return Promise.reject();
   }
 
@@ -32,7 +31,6 @@ const resizeImage = async ({
 
   if (!imageBuffer) {
     return Promise.reject();
-    console.log('Here2');
   }
 
   return fs
@@ -42,7 +40,6 @@ const resizeImage = async ({
     })
     .catch(() => {
       return Promise.reject();
-      console.log('Here3');
     });
 };
 
