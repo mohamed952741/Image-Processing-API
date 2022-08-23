@@ -12,6 +12,7 @@
 ## Description
 This project is part of the Udacity Full-Stack Web-development Nanodegree
 This project takes an image file and resizes it to a thumbnail of custom width and hight
+This project is written in TypeScript and uses NodeJS as the runtime enviroment and also uses Express,Jasmine and Sharp
 
 ### Functionality
 
